@@ -1,7 +1,7 @@
-import cds from '@sap/cds';
-import {createHash,timingSafeEqual} from 'node:crypto';
+const cds = require('@sap/cds');
+const {createHash,timingSafeEqual} = require('node:crypto');
 const digest=value=>createHash('sha256').update(value).digest();
-export default function stockBasicAuth(req,res,next) {
+module.exports = function stockBasicAuth(req,res,next) {
   const fail=()=>res.status(401).json({error:{code:'401',message:'Utilisateur ou mot de passe incorrect.'}});
   const header=req.headers.authorization;
   if(typeof header!=='string'||!/^Basic /i.test(header))return fail();

@@ -8,7 +8,7 @@ export function configureWebDatabase() {
   host:url.hostname,port:Number(url.port||5432),database:decodeURIComponent(url.pathname.slice(1)),
   user:decodeURIComponent(url.username),password:decodeURIComponent(url.password),ssl:['127.0.0.1','localhost'].includes(url.hostname)?false:{rejectUnauthorized:true}
  }};
- cds.env.requires.auth={kind:'basic',impl:'./srv/stock-basic-auth.js'};
+ cds.env.requires.auth={kind:'basic',impl:'./srv/stock-basic-auth.cjs'};
  if(process.env.STOCK_DEMO_MODE!=='true' && (!process.env.STOCK_MANAGER_PASSWORD||process.env.STOCK_MANAGER_PASSWORD.length<16)) {
   throw new Error('STOCK_MANAGER_PASSWORD doit contenir au moins 16 caractères hors démonstration.');
  }

@@ -5,7 +5,7 @@ import cds from '@sap/cds';
 test('Web : authentification configurée, rôles et distinction démonstration/installation privée',async()=>{
  process.env.STOCK_DEMO_MODE='true';
  cds.env.requires.db.credentials={url:':memory:'};
- cds.env.requires.auth={kind:'basic',impl:'./srv/stock-basic-auth.js'};
+ cds.env.requires.auth={kind:'basic',impl:'./srv/stock-basic-auth.cjs'};
  const server=await cds.server({port:0,in_memory:true});
  const base='http://127.0.0.1:'+server.address().port+'/catalog/';
  const get=(path,user,password)=>fetch(base+path,{headers:user?{Authorization:'Basic '+Buffer.from(user+':'+password).toString('base64')}: {}});
