@@ -1,0 +1,68 @@
+{
+  "name": "atelier-stock-sap-cap",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@cap-js/postgres": "^3.1.3",
+    "@sap/cds": "^10",
+    "express": "^5.3.0",
+    "serverless-http": "^4.0.0"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^3"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "dev": "cds watch",
+    "test": "node --test test/*.test.js",
+    "db:init": "node scripts/init-db.js",
+    "db:migrate-authors": "node scripts/migrate-authors.js",
+    "db:backup": "node scripts/db-maintenance.js backup",
+    "db:restore": "node scripts/db-maintenance.js restore",
+    "db:import-kiry": "node scripts/import-kiry.js",
+    "db:migrate-audit": "node scripts/migrate-catalogue-audit.js",
+    "build:web": "node scripts/build-web.js",
+    "db:deploy-web": "node scripts/deploy-web.js"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "db": {
+        "credentials": {
+          "url": "db.sqlite"
+        },
+        "kind": "sqlite",
+        "[production]": {
+          "kind": "postgres"
+        }
+      },
+      "auth": {
+        "[development]": {
+          "kind": "mocked",
+          "users": {
+            "viewer": {
+              "password": "viewer-demo",
+              "roles": [
+                "Viewer"
+              ]
+            },
+            "manager": {
+              "password": "manager-demo",
+              "roles": [
+                "Manager"
+              ]
+            },
+            "*": false
+          }
+        },
+        "[production]": {
+          "kind": "basic",
+          "impl": "./srv/stock-basic-auth.js"
+        }
+      }
+    }
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

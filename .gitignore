@@ -1,0 +1,37 @@
+node_modules/
+target/
+_out/
+gen/
+
+.cdsrc-private.json
+default-*.json
+*.sqlite
+
+# MTA
+mta_archives/
+*_mta_build_tmp
+*.mtar
+
+# Other
+.DS_Store
+
+# @cap-js/cds-typer
+@cds-models
+
+*.sqlite-wal
+*.sqlite-shm
+
+# Sauvegardes locales privées
+backups/
+
+# Exports privés du client : ne jamais publier
+private-data/
+
+.env
+.env.*
+!.env.example
+.netlify/
+*.dump
+*.log
+output/
+tmp/
