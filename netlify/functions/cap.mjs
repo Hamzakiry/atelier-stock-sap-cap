@@ -9,7 +9,7 @@ export async function handler(event,context){
   event.path=(event.path||'/').replace(/^\/\.netlify\/functions\/cap/,'')||'/';
   return await app(event,context);
  }catch(error){
-  console.error('CAP startup failed:',error.code||error.name);
+  console.error('CAP startup failed:', (error.stack || error.name).replace(/postgres(?:ql)?:\/\/[^\s]+/g,'[redacted]').replace(/npg_[A-Za-z0-9]+/g,'[redacted]'));
   return {statusCode:503,headers:{'content-type':'application/json','cache-control':'no-store'},body:JSON.stringify({error:{code:'503',message:'Service temporairement indisponible. Réessayer plus tard.'}})};
  }
 }
