@@ -9,7 +9,7 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
   external_node_modules = ["@sap/cds", "@cap-js/postgres", "pg", "express", "serverless-http"]
-  included_files = ["db/schema.cds", "srv/**", "web/**", "package.json", "node_modules/@sap/cds/**", "node_modules/@sap/cds-compiler/**", "node_modules/@cap-js/postgres/**", "node_modules/@cap-js/db-service/**"]
+  included_files = ["db/schema.cds", "srv/**", "web/**", "package.json", "node_modules/**", "!node_modules/@cap-js/sqlite/**", "!node_modules/better-sqlite3/**"]
 
 [[redirects]]
   from = "/catalog/*"
