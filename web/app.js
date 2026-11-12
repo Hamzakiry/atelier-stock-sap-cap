@@ -1,5 +1,6 @@
 import cds from '@sap/cds';
 import express from 'express';
+import {resetBridgeBody} from './request-body.js';
 import {configureWebDatabase} from './config.js';
 let initialized;
 export function getWebApp(){
@@ -8,7 +9,7 @@ export function getWebApp(){
   const app=express();cds.app=app;
   app.disable('x-powered-by');
   // The Lambda bridge preloads a Buffer; CAP expects JSON objects or an unread stream.
-  app.use((req,res,next)=>{if(Buffer.isBuffer(req.body))delete req.body;next();});
+  app.use(resetBridgeBody);
   app.use(express.json({limit:'1mb'}));
   app.use((req,res,next)=>{res.set('Cache-Control','no-store');res.set('X-Content-Type-Options','nosniff');next();});
   cds.model=cds.compile.for.nodejs(await cds.load(['db','srv']));
