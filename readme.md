@@ -2,6 +2,12 @@
 
 Application pédagogique de gestion de stock pour un magasin de produits et de matériel de pâtisserie. Le nom technique du dossier provient du projet initial ; le périmètre actuel est la gestion de stock.
 
+## Démonstration web
+
+[Ouvrir Atelier Stock](https://atelier-stock-sap-cap.netlify.app/). Hébergement Netlify et base PostgreSQL Neon, sur leurs offres gratuites avec quotas. Cette instance contient uniquement des données fictives et les comptes de démonstration publics. Les données du magasin restent locales.
+
+Sur Android, ouvrir le lien dans Chrome puis choisir **Installer l’application**. Il s’agit d’une PWA ; le stock nécessite Internet.
+
 ## Démarrer en local
 
 Environnement validé : Windows, Node.js 24.13.1, SAP CAP 10, SQLite.
@@ -67,7 +73,7 @@ Les scénarios couvrent les validations, transactions, autorisations HTTP, pére
 
 ## Limites
 
-Projet local de démonstration : authentification de production, sauvegardes externes automatiques et traçabilité des créations/imports restent à compléter. Les sauvegardes ne sont ni chiffrées ni envoyées vers un service externe.
+Projet de démonstration : comptes publics réservés aux données fictives. Une installation client nécessite des mots de passe privés, une stratégie de sauvegarde externe et une revue des accès. La traçabilité des créations/imports reste à compléter. Les sauvegardes ne sont ni chiffrées ni envoyées vers un service externe.
 
 ## Référentiel Kiry importé
 
